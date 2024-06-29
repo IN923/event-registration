@@ -1,26 +1,38 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1>{{event.name}}</h1>
-{% if registered %}
-<p>You have already registered for an event</p>
-{% else %}
-<a href="{% url 'registration-confirmation' event.id %}">Register</a>
-{% endif %}
-{% if submitted %}
-<p>You have already submiited the project</p>
-{% else %}
-<a href="{% url 'project-submission' event.id %}">Submit Project</a>
-{% endif %}
-<p>{{event.description}}</p>
 
-<div>
-    <h3>Event Participants</h3>
+<div class="section">
+    <h1>{{event.name}}</h1>
+</div>
 
+<div class="section" id="event--action--wrapper">
+    {% if registered %}
+    <p class="text--success">You have already registered for an event||</p>
+    <br><br>
+    {% else %}
+    <a class="btn btn--primary" href="{% url 'registration-confirmation' event.id %}">Register</a>
+    {% endif %}
+
+    {% if submitted %}
+    <p class="text--success">You have already submitted the project</p>
+    {% else %}
+    <a class="btn btn--primary" href="{% url 'project-submission' event.id %}">Submit Project</a>
+    {% endif %}
+
+</div>
+
+<p>{{event.description|linebreaks|urlize}}</p>
+
+<div class="users--lists section">
     {% for user in event.participants.all %}
-    <div>
-        <strong>{{user.name}}</strong>
-    </div>
+    <a href="{% url 'profile' user.id %}">
+        <div class="wrapper--user">
+            <img class="user--avatar--sm" src="{{user.avatar.url}}">
+            <!-- {{ 'images/avatar.png' }}" -->
+            <h4>{{user.name}}</h4>
+        </div>
+    </a>
     {% endfor %}
 </div>
 {% endblock %}

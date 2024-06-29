@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid 
+from django_resized import ResizedImageField
 # Create your models here.
 
 class User(AbstractUser):
@@ -9,6 +11,11 @@ class User(AbstractUser):
 
     hackathon_participant = models.BooleanField(default=True,blank=True)
 
+    avatar = ResizedImageField(size=[300, 300],default='avatar.png',upload_to='images')
+
+    id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,
+                          editable=False)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -17,12 +24,12 @@ class Event(models.Model):
     description = models.TextField(null=True, blank=True) 
     participants = models.ManyToManyField(User,blank=True,related_name="events")
     date = models.DateTimeField()
-    start_date = models.TimeField(null=True)
-    end_date = models.TimeField(null=True)
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
     registration_deadline = models.DateTimeField(null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-
+    id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
     def __str__(self):
         return self.name
 
@@ -30,6 +37,7 @@ class Submission(models.Model):
     participant = models.ForeignKey(User,on_delete=models.SET_NULL, null=True,related_name="submissions")  # many to one 
     event = models.ForeignKey(Event,on_delete=models.SET_NULL, null=True)
     details = models.TextField(null=True, blank=True)
+    id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
 
     def __str__(self):
         return str(self.event) + ' --- ' + str(self.participant)

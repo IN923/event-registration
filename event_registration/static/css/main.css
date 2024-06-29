@@ -8,6 +8,48 @@
     background-color: rgb(249, 250, 251)
 }
 
+.text--success {
+    color: #198754;
+}
+
+.section {
+    margin: 2em 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 1px solid rgb(94, 100, 226);
+    background-color: rgb(204, 204, 204);
+    color: black;
+    display: block;
+    width: fit-content;
+    margin: 10px;
+    border: none;
+}
+
+.btn--primary {
+    background-color: steelblue;
+    color: white;
+}
+
+.btn--warning {
+    background-color: #ffe900;
+}
+
+.error {
+    color: #E55d42;
+}
+
+.success {
+    color: #3aabd4;
+}
+
+.info {
+    color: #31a62b;
+}
+
 .container--main {
     width: 1200px;
     margin: 0 auto;
@@ -16,11 +58,11 @@
 
 nav {
     width: 100%;
-    padding: 1em;
+    padding: 0.5em;
     border-bottom: 1px solid rgb(218, 218, 218);
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
 }
 
 nav a {
@@ -29,8 +71,69 @@ nav a {
     margin: 0 10px;
 }
 
+.events--lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
 .wrapper--event {
     border: 1px solid rgb(218, 218, 218);
+    padding: 2em;
+    border-radius: 5px;
+}
+
+.wrapper--user {
+    border: 1px solid rgb(218, 218, 218);
+    padding: 2em;
+    border-radius: 5px;
+}
+
+.user--avatar--sm {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user--avatar--lg {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.users--lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+#event--action--wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.login-register--container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(218, 218, 218);
     padding: 1em;
     border-radius: 5px;
+}
+
+.form-field--wrapper {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+input {
+    width: 100%
+}
+
+@media (max-width:1200px) {
+    .container--main {
+        width: 100%;
+    }
 }
